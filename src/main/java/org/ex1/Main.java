@@ -10,6 +10,7 @@ import java.io.*;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Properties;
 
 public class Main {
@@ -17,8 +18,8 @@ public class Main {
     public static void main(String[] args) {
         Properties properties = new Properties();
         try {
-            String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-            properties.load(new FileInputStream(new File(rootPath + "configuration.properties")));
+            String rootPath = Objects.requireNonNull(Thread.currentThread().getContextClassLoader().getResource("")).getPath();
+            properties.load(new FileInputStream(rootPath + "configuration.properties"));
             String pathIn = properties.get("PATH_IN").toString();
             String pathOut = properties.get("PATH_OUT").toString();
             String pathOutEncrypt = properties.get("PATH_OUT_ENCRYPT").toString();
