@@ -23,14 +23,13 @@ public class Main {
             String pathIn = properties.get("PATH_IN").toString();
             String pathOut = properties.get("PATH_OUT").toString();
             String pathOutEncrypt = properties.get("PATH_OUT_ENCRYPT").toString();
-            String pathOutDecrypt = properties.get("PATH_OUT_DECRYPT").toString();
+            String secretKey = properties.get("PATH_OUT_DECRYPT").toString();
 
             pathIn = FileUtils.getAbsoluteFilePath(FileUtils.getAbsoluteFilePath(FileUtils.getProjectPath() + pathIn));
             writeFileList(FileLister.listFiles(pathIn, SortOrder.ASC), rootPath + pathOut);
 
-            encryptFile(Cipher.ENCRYPT_MODE,"1234567890123456", new File(rootPath + pathOut), new File(rootPath + pathOutEncrypt));
-            encryptFile(Cipher.DECRYPT_MODE,"1234567890123456", new File(rootPath + pathOutEncrypt), new File(rootPath + pathOutDecrypt));
-
+            encryptFile(Cipher.ENCRYPT_MODE, secretKey, new File(rootPath + pathOut), new File(rootPath + pathOutEncrypt));
+            encryptFile(Cipher.DECRYPT_MODE, secretKey, new File(rootPath + pathOutEncrypt), new File(rootPath + pathOutDecrypt));
         } catch (IOException e) {
             new Print("Path don't exist");
             throw new RuntimeException(e);
