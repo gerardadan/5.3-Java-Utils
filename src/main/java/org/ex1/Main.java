@@ -23,7 +23,8 @@ public class Main {
             String pathIn = properties.get("PATH_IN").toString();
             String pathOut = properties.get("PATH_OUT").toString();
             String pathOutEncrypt = properties.get("PATH_OUT_ENCRYPT").toString();
-            String secretKey = properties.get("PATH_OUT_DECRYPT").toString();
+            String pathOutDecrypt = properties.get("PATH_OUT_DECRYPT").toString();
+            String secretKey = properties.get("AES_KEY").toString();
 
             pathIn = FileUtils.getAbsoluteFilePath(FileUtils.getAbsoluteFilePath(FileUtils.getProjectPath() + pathIn));
             writeFileList(FileLister.listFiles(pathIn, SortOrder.ASC), rootPath + pathOut);
