@@ -3,8 +3,13 @@ package org.utils;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class FileUtils {
+
+    public static String getRootPath() {
+        return Objects.requireNonNull(Thread.currentThread().getContextClassLoader().getResource("")).getPath();
+    }
 
     public static String getProjectPath() throws IllegalArgumentException {
         String filePath = System.getProperty("user.dir");
